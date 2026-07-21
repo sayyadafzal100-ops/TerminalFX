@@ -1,0 +1,24 @@
+# Virtual Environment
+.venv/
+
+# Build
+build/
+dist/
+
+# Egg Info
+*.egg-info/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Pytest
+.pytest_cache/
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
