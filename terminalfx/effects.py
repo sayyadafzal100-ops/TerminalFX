@@ -1,29 +1,42 @@
-from .constants import speed, repeat, default_color, direction, reverse, palette, typing
-from .utils import clear_line, get_color_code, color_palettes
+from .constants import speed, repeat, default_color, direction, palette, shine_width, shine_color
+from .utils import color_palettes, get_color_code, clear_line
+from .validators import (
+text_validator,
+speed_validator,
+repeat_validator, 
+direction_validator, 
+palette_validator,
+shine_color_validator,
+shine_width_validator)
 
 
 import time
 
 class Effects:
 
-    def __init__(
-        self,
-        speed=speed,
-        repeat=repeat,
-        color=default_color,
-    ):
-        self.speed = speed
-        self.repeat = repeat
-        self.color = color
+    # def __init__(
+    #     self,
+    #     speed=speed,
+    #     repeat=repeat,
+    #     color=default_color,
+    # ):
+    #     self.speed = float(speed)
+    #     self.repeat = int(repeat)
+    #     self.color = color
 
     def gradient(self,
         text,
-        speed=0.05,
-        repeat=repeat,
-        direction=direction,
-        palette=palette
-    ):
-   
+        speed=float(0.05),
+        repeat=int(repeat),
+        direction=str(direction),
+        palette=str(palette)
+    ):  
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
+        direction = direction_validator(direction)
+        palette = palette_validator(palette)
+
         ANSI_COLORS, RESET = color_palettes(palette)
        
         for _ in range(repeat):  
@@ -50,44 +63,102 @@ class Effects:
                     last = ANSI_COLORS.pop()
                     ANSI_COLORS.insert(0, last)
 
-    def shine(self):
-        pass
+    def shine(
+        self, 
+        text, 
+        speed=speed, 
+        repeat=repeat, 
+        direction=direction, 
+        shine_width=shine_width, 
+        shine_color=shine_color, 
+        color=default_color):
 
-    def scramble(self):
-        pass
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
+        direction = direction_validator(direction)
+        shine_width = shine_width_validator(shine_width)
+        shine_color = shine_color_validator(shine_color)
+        color, RESET = get_color_code(color)
 
-    def fade(self):
-        pass
+        
+        shine_position = 0
 
-    def pulse(self):
-        pass
+        for _ in range(repeat):
+            if direction.lower() == "right":
+                start = 0
+                step = 1
+                end = len(text) + 1
 
-    def highlight(self):
-        pass
+            elif direction.lower() == "left":
+                start = len(text) - shine_width
+                step = -1
+                end= -1
+            
+            for shine_position in range(start, end, step):
+                full_word = ""
+                for index, value in enumerate(text):
+                    if shine_position <= index < shine_position + shine_width:
+                        full_word += f"{shine_color}{value}{RESET}"
+                        # shine_position += 1
+                    
+                    else:
+                        full_word += f"{color}{value}{RESET}"
+                    
+                    
+                    
+            
 
-    def scan(self):
-        pass
+                result = '\r' + full_word
+                    
 
-    def flicker(self):
-        pass
+                print("\r" + result, end="")
+                time.sleep(speed)
+                
+        clear_line(result + "\r")
+                
+    # def scramble(self):
+    #     pass
 
-    def wave_color(self):
-        pass
+    # def fade(self):
+    #     pass
 
-    def reveal(self):
-        pass
+    # def pulse(self):
+    #     pass
 
-    def hologram(self):
-        pass
+    # def highlight(self):
+    #     pass
+
+    # def scan(self):
+    #     pass
+
+    # def flicker(self):
+    #     pass
+
+    # def wave_color(self):
+    #     pass
+
+    # def reveal(self):
+    #     pass
+
+    # def hologram(self):
+    #     pass
+    
+    def documents(self):
+        documents = """
+        from terminalfx import Effects
+
+        effects = Effects()
+
+        effects.gradient("hello from afzal", repeat=5, palette="sunset", speed=1, direction="right")
+
+        effects.shine("hello from afzal", speed=0.1, direction="right", shine_color="black", shine_width=2, color="white")
+        """
+
+        print(documents)
 
 
 
 
 
 
-effects = Effects()
-
-effects.gradient("hello from afzal", repeat=5,palette="sunset", speed=1, direction="jjh")
-
-#python terminalfx/effects.py
-#python -m terminalfx/effects

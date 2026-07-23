@@ -1,7 +1,7 @@
-# Terminalfx
+# TerminalFX
+
 A modern Python library for beautiful terminal text animations and effects.
 
-# TerminalFX
 
 TerminalFX is a Python library that makes terminal output more fun and beautiful.
 
@@ -29,6 +29,10 @@ Whether you're building a CLI application, a game, a script, or just experimenti
 - Gradient Animation
 
 More effects are coming in future updates.
+
+- shine Animation
+
+more effects arecoming in future updates.
 
 ---
 
@@ -99,6 +103,7 @@ Currently available:
 - scroll_left()
 - scroll_right()
 
+
 ---
 
 ## Effects
@@ -108,6 +113,7 @@ The `Effects` class contains visual text effects.
 Currently available:
 
 - gradient()
+- shine()
 
 More effects will be added over time.
 
@@ -186,7 +192,7 @@ terminalfx/
 
 # 🚀 Roadmap
 
-### Version 0.1
+### Version 0.2
 
 - ✅ Text animations
 - ✅ Gradient effect
@@ -223,7 +229,7 @@ This project is licensed under the MIT License.
 Made with ❤️ by **Afzal Sayyad**
 
 GitHub:
-https://github.com/YOUR_USERNAME
+https://github.com/sayyadafzal100-ops/TerminalFX
 
 Email:
 sayyadafzal100@gmail.com

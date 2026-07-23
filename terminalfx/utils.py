@@ -3,12 +3,16 @@ from .constants import default_color
 from .palettes import PALETTES
 
 def get_color_code(color=default_color):
-    
-    if color.lower() not in Colors:
-        print(f"Warning: Invalid color '{color}'. Using default color '{default_color}'.")
-        color = default_color
+    try:
+        if color.lower() not in Colors:
+            print(f"Warning: Invalid color '{color}'. Using default color '{default_color}'.")
+            color = default_color
 
-    return Colors[color.lower()], Reset
+        return Colors[color.lower()], Reset
+    except TypeError:
+        print(f"Error: Invalid color '{color}'.")
+        return default_color, Reset
+
 
 def clear_line(text):
     print("\r" + " " * len(text) + "\r", end="", flush=True)
@@ -17,8 +21,11 @@ def clear_line(text):
 def color_palettes(palettes):
     temp = []
     get_colors = []
-    if palettes.lower() in PALETTES:
-        temp.append(PALETTES[palettes])
+    try:
+        if palettes.lower() in PALETTES:
+            temp.append(PALETTES[palettes])
+    except ValueError as e:
+        print(f"error: {e}")
 
     for i in temp:
       for j in i:
@@ -27,12 +34,13 @@ def color_palettes(palettes):
     return get_colors, RESET
        
 
-    
+def color_handling(color):
+    try:
+        # Getting colors codes
+        COLOR, RESET = get_color_code(color)
+    except TypeError:
+        print(f"Error: Invalid color '{color}'.")
+        COLOR, RESET = get_color_code(default_color)
 
-
-
-
-
-
-
+    return COLOR, RESET
 

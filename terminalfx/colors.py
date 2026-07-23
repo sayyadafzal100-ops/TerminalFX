@@ -43,3 +43,5 @@ Colors = {
 Reset = "\033[0m"
 
 
+# print(f"\033[1m afzal{Reset}")
+# print(f"{Colors['white']}afzal{Reset}")

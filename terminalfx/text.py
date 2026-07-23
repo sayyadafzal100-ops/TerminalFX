@@ -1,6 +1,11 @@
 
 from .constants import speed, repeat, text, default_color, width
-from .utils import get_color_code, clear_line
+from .utils import clear_line, color_handling
+from .validators import (
+text_validator, 
+speed_validator, 
+repeat_validator, 
+width_validator)
 import time
 
 
@@ -24,8 +29,11 @@ class Text:
         ----- text.typewriter("hello world", repeat=5, color="blue", speed=0.1)
             
         """
-        # Getting colors codes
-        COLOR, RESET = get_color_code(color)
+        
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
+        COLOR, RESET = color_handling(color)
 
         # Typewriter effect
         for _ in range(repeat):
@@ -33,6 +41,7 @@ class Text:
                 print(f"{COLOR}{char}{RESET}", end='', flush=True)
                 time.sleep(speed)
         print()
+        
         
             
 
@@ -45,7 +54,10 @@ class Text:
         ----- text.blink("hello world", repeat=5, color="blue", speed=0.1)
 
         """
-        COLOR, RESET = get_color_code(color)
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
+        COLOR, RESET = color_handling(color)
 
         for _ in range(repeat):
             print(f"{COLOR}{text}{RESET}", end="", flush=True)
@@ -63,8 +75,11 @@ class Text:
         ----- text.dots("hello world", repeat=5, color="blue", speed=0.1)
 
         """
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
         
-        COLOR, RESET = get_color_code(color)
+        COLOR, RESET = color_handling(color)
         dots = [".", "..", "..."]
 
         for _ in range(repeat):
@@ -86,8 +101,11 @@ class Text:
         ----- text.reverse_typewriter("hello world", repeat=5, color="blue", speed=0.1)
 
         """
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
         
-        COLOR, RESET = get_color_code(color)
+        COLOR, RESET = color_handling(color)
 
         for _ in range(repeat):
             print(f"{COLOR}{text}{RESET}", end="", flush=True)
@@ -111,8 +129,11 @@ class Text:
         ----- text.wave("hello world", repeat=5, color="blue", speed=0.1)
 
         """
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
 
-        COLOR, RESET = get_color_code(color)
+        COLOR, RESET = color_handling(color)
         temp = list(text)
 
         for _ in range(repeat):
@@ -136,8 +157,12 @@ class Text:
         ----- text.bounce("hello world", repeat=5, color="blue", speed=0.1, width=20)
         
         """
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
+        width = width_validator(width)
 
-        COLOR, RESET = get_color_code(color)
+        COLOR, RESET = color_handling(color)
         
         for _ in range(repeat):
             for i in range(width + 1):
@@ -167,7 +192,12 @@ class Text:
         ----- text.scroll_left("hello world", repeat=5, color="blue", speed=0.1, width=20)
 
         """
-        COLOR, RESET = get_color_code(color)
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
+        width = width_validator(width)
+
+        COLOR, RESET = color_handling(color)
 
         for _ in range(repeat):
             for i in range(width, -1, -1):
@@ -193,7 +223,12 @@ class Text:
         ----- text.scroll_right("hello world", repeat=5, color="blue", speed=0.1, width=20)
         
         """
-        COLOR, RESET = get_color_code(color)
+        text = text_validator(text)
+        speed = speed_validator(speed)
+        repeat = repeat_validator(repeat)
+        width = width_validator(width)
+        
+        COLOR, RESET = color_handling(color)
 
         
         for _ in range(repeat):
@@ -209,7 +244,7 @@ class Text:
                 data = " " * width + text[:-i]
                 clear_line(data)
         
-    def Documents(self):
+    def documents(self):
         documents = """
 
 from terminalfx.text import Text

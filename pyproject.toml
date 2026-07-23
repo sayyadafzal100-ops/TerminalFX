@@ -4,11 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "terminalfx"
-version = "0.1.0"
-description = "A Python library for beautiful terminal text animations."
+version = "0.2.0"
+description = "A modern Python library for beautiful terminal text animations and effects."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
+
+
 
 authors = [
     { name = "Sayyad Afzal", email = "sayyadafzal100@gmail.com" }
@@ -19,15 +21,30 @@ keywords = [
     "animation",
     "text",
     "cli",
+    "ansi",
+    "terminal-animation",
+    "python",
     "effects",
-    "terminal vfx"
+    "terminalfx"
 ]
 
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent"
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries"
 ]
 
 [tool.setuptools]
 packages = ["terminalfx"]
+
+[project.urls]
+Homepage = "https://github.com/sayyadafzal100-ops/Terminalfx"
+Repository = "https://github.com/sayyadafzal100-ops/Terminalfx"
+Issues = "https://github.com/sayyadafzal100-ops/Terminalfx/issues"
